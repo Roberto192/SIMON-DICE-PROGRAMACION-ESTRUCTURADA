@@ -72,6 +72,9 @@ void printScoreds(Tscored *scoreds, ALLEGRO_FONT *font)
 
     al_draw_filled_rectangle(WIDTH/8, 12, WIDTH - WIDTH/8, HEIGHT-12, al_map_rgba(0x2C, 0x5D, 0x37, 0xbb));
     al_draw_textf(font, al_map_rgb(0xff, 0xff, 0xff), WIDTH/8+25+40, HEIGHT/12, 0, "POSICION| NOMBRE |ESCORE");
+    al_draw_filled_rectangle(10, 12, 89, 48+74, al_map_rgb(0x6a, 0x80, 0x85));
+    al_draw_text(font, al_map_rgb(0xff, 0x40, 0), 0, 0, 0,  " Q ");
+    al_draw_text(font, al_map_rgb(0xff, 0x40, 0), 15, 48, 0, "<- ");
     for(i = 0; i < MAX-1; i++)
     {
         if(scoreds[i].name[0] != '\0')

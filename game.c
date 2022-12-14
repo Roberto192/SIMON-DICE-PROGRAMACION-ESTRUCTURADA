@@ -15,7 +15,9 @@ int start_game()
 
     ALLEGRO_EVENT_QUEUE *event_queue;//Puntero a una cola de eventos;
     ALLEGRO_DISPLAY *display;//Puntero hacia una pantalla;
-    ALLEGRO_TIMER *timer, *timerSecond, *timerTicks;//Puntero a un temporizador
+    ALLEGRO_TIMER *timer, *timerSecond, *timerTicks;/// Puntero a un temporizador timer -> el flujo de todo el juego
+                                                    /// Puntero a un temporizador timerSecond -> el flujo de muestra de botones al usuario
+                                                    /// Puntero a un temporizador timerTicks -> el flujo de los ticks por cada parpadeo
     ALLEGRO_BITMAP *sprites, *logo, *bloquesSprites, *background;//Puntero a mapa de bits
     ALLEGRO_EVENT event;//el que controlara todo evento
     ALLEGRO_FONT *font = al_load_ttf_font(NOMBRE_FUENTE, 84, ALLEGRO_TTF_MONOCHROME);
@@ -38,7 +40,7 @@ int start_game()
     int errores = 0;
     int escenario = ESCENARIO_MENU;
     int n = (int) sqrt(MAX_BLOQUE);
-    int i = 0, j = 0, k = 0;//i es el index para textUser y j es el index para textGame
+    int i = 0, j = 0, k = 0, controlador_muestra = 0;//i es el index para textUser y j es el index para textGame
     int bloqueIndex = 0;
 
     char textGame[MAX_ELEMETS];
@@ -207,7 +209,7 @@ int start_game()
                         {
                             if(!press)
                             {
-                                if(event.keyboard.keycode == ALLEGRO_KEY_S)
+                                if(event.keyboard.keycode == ALLEGRO_KEY_S || event.keyboard.keycode == ALLEGRO_KEY_Q)
                                 {
                                     caracterAscii = '\0';
                                     saveScored(&scored, scored.scored);
@@ -249,7 +251,8 @@ int start_game()
             if(al_get_timer_count(timerSecond) >= FPS)
             {
                 al_set_timer_count(timerSecond, 0);
-                if(k == 0){
+                if(k == 0)
+                {
                     al_unregister_event_source(event_queue, al_get_keyboard_event_source());
                 }
 
@@ -300,6 +303,16 @@ int start_game()
                 botonAnimacion(&miMenu);
                 logoAnimacion(&miMenu);
                 redraw = true;
+                if(escenario == ESCENARIO_PLAY)
+                {
+
+                    controlador_muestra++;
+                    if(controlador_muestra > 30)
+                    {
+                        controlador_muestra = 0;
+                        caracterAscii = '\0';
+                    }
+                }
             }
         }
 
@@ -331,8 +344,8 @@ int start_game()
                             }
 
 
-                            if(timer_event){
-                                al_rest(0.3);
+                            if(timer_event)
+                            {
                                 al_draw_filled_rectangle(formulax[0], formulay[0], formulax[2]+bloques->imagenPrincipal.tamx, formulay[2]+bloques->imagenPrincipal.tamy, al_map_rgba(0xaa, 0x00, 0x00, 0x01));
                             }
 

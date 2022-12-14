@@ -18,17 +18,20 @@ void obtenerFomula(float *formulax, float *formulay, int n, int x, int w, int h)
 void play(Tbloque *bloques, int tam, float fx[], float fy[], int fTam, ALLEGRO_FONT *font, int cant, int maxCant, char caracter)
 {
     ALLEGRO_BITMAP *bloque;
-    int i, j, k = 0;
+    int i, j, k;
 
 
-    bloque = bloques[k].imagenPrincipal.image;
+    bloque = bloques->imagenPrincipal.image;
     al_draw_filled_rectangle(fx[0]-10, fy[0]-10, fx[2]+bloques->imagenPrincipal.tamx+10, fy[2]+bloques->imagenPrincipal.tamy+10, al_map_rgb(0x6a, 0x80, 0x85));
     al_draw_rectangle(fx[0]-10, fy[0]-10, fx[2]+bloques->imagenPrincipal.tamx+10, fy[2]+bloques->imagenPrincipal.tamy+10, al_map_rgb(0x00, 0x00, 0x00), 5);
     al_draw_textf(font, al_map_rgb(0xff, 0xff, 0xff), 40, 0, 0, "Scored: %2d",cant-1);
     al_draw_textf(font, al_map_rgb(0xff, 0xff, 0xff), WIDTH - WIDTH/2.5, 0, 0, "Max scored: %2d",maxCant);
-    al_draw_bitmap_region(bloque, COORD_X(2), COORD_Y(1), bloques->imagenPrincipal.tamx, bloques->imagenPrincipal.tamy, fx[1]*1.7, fy[1], 0);
+    k = (caracter != '\0')? 2 : 1;
+    al_draw_bitmap_region(bloque, COORD_X(2), COORD_Y(k), bloques->imagenPrincipal.tamx, bloques->imagenPrincipal.tamy, fx[1]*1.7, fy[1], 0);
+
     al_draw_textf(font, al_map_rgb(0xff, 0xff, 0xff), (fx[1]*1.7) + (bloques[k].imagenPrincipal.tamx/2), fy[1], ALLEGRO_ALIGN_CENTRE, "%c",caracter);
 
+    k = 0;
     for(i = 0; i < fTam; i++)
     {
         for(j = 0; j < fTam; j++)

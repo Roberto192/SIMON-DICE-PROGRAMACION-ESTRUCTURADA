@@ -6,11 +6,23 @@
 #define ESCENARIO_RECORDS 2
 #define ESCENARIO_CONFIG 3
 
+#ifdef __WIN32__
+
 #define NOMBRE_FUENTE "img\\VT323.ttf"
 #define IMAGEN_FONDO "img\\fondo.png"
 #define IMAGEN_BOTONES "img\\botones_menu.png"
 #define IMAGEN_LOGO "img\\simon_dice.png"
 #define IMAGEN_SPRITES "img\\sprites.png"
+
+#else
+
+#define NOMBRE_FUENTE "img/VT323.ttf"
+#define IMAGEN_FONDO "img/fondo.png"
+#define IMAGEN_BOTONES "img/botones_menu.png"
+#define IMAGEN_LOGO "img/simon_dice.png"
+#define IMAGEN_SPRITES "img/sprites.png"
+
+#endif // __WIN32__
 
 #include <stdio.h>
 #include <allegro5/allegro5.h>
