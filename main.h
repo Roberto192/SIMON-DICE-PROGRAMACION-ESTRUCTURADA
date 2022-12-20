@@ -8,19 +8,21 @@
 
 #ifdef __WIN32__
 
-#define NOMBRE_FUENTE "img\\VT323.ttf"
-#define IMAGEN_FONDO "img\\fondo.png"
-#define IMAGEN_BOTONES "img\\botones_menu.png"
-#define IMAGEN_LOGO "img\\simon_dice.png"
-#define IMAGEN_SPRITES "img\\sprites.png"
+#define NOMBRE_FUENTE "src\\VT323.ttf"
+#define IMAGEN_FONDO "src\\fondo.png"
+#define IMAGEN_BOTONES "src\\botones_menu.png"
+#define IMAGEN_LOGO "src\\simon_dice.png"
+#define IMAGEN_SPRITES "src\\sprites.png"
+#define AUDIO_WAV "src\\audio.wav"
 
 #else
 
-#define NOMBRE_FUENTE "img/VT323.ttf"
-#define IMAGEN_FONDO "img/fondo.png"
-#define IMAGEN_BOTONES "img/botones_menu.png"
-#define IMAGEN_LOGO "img/simon_dice.png"
-#define IMAGEN_SPRITES "img/sprites.png"
+#define NOMBRE_FUENTE "src/VT323.ttf"
+#define IMAGEN_FONDO "src/fondo.png"
+#define IMAGEN_BOTONES "src/botones_menu.png"
+#define IMAGEN_LOGO "src/simon_dice.png"
+#define IMAGEN_SPRITES "src/sprites.png"
+#define AUDIO_WAV "src/audio.wav"
 
 #endif // __WIN32__
 
